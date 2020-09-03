@@ -1,0 +1,11 @@
+<% if notice %>
+  <%= notice %>
+<% end %>
+<% if alert %>
+  <%= alert %>
+<% end %>
+# Now open app/views/layouts/application.html.erb add the devise notices partial. Add it above the yield tag, and between the body tags.
+<body>
+  <%= render 'layouts/devise_notices' %>
+   <%= yield %>
+</body>
