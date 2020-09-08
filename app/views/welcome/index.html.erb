@@ -1,3 +1,16 @@
-<h1> welcome to billing and recurring app in rails </h1>
-<%= link_to "Log in", new_user_session_path %><br />
-<%= link_to "Sign up", new_user_registration_path %><br />
+
+<h1 class="jumbotron text-center"> welcome to billing and recurring app in rails </h1>
+<% if user_signed_in? && current_user.admin? %>
+<center>
+	<h1>Welcome <%=current_user.name%></h1>
+	<%= link_to "Add plan", new_plan_path %><br />
+
+	 <%=render 'plans/plans', plans: @plans%> 
+</center>
+<% elsif user_signed_in?%>
+<center>
+	<h1>Welcome <%=current_user.name%></h1>
+	<h1>Here are the plans for you </h1>
+	<%=render 'plans/plans', plans: @plans%>
+</center>
+<%end%>

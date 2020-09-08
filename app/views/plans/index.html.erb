@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<center>
+  <h1>Plans</h1>
+  <% if current_user.admin? %>
+    <%= link_to 'Add New Plan', new_plan_path %>\
+  <%end%>
+</center>
+<div class="row">
+<% @plans.each do |plan| %>
+
+<div class="card text-center col-sm-4">
+<div class="card-body">
+    <h5 class="card-title">Plan Name: <%=plan.name%></h5>
+    <p class="card-text">Plan Fee: <%=plan.fee%></p>
+    <td><%= link_to 'Show Details', plan %></td></br>
+    <% if current_user.admin? %>
+        <%= link_to 'Change plan details', edit_plan_path(plan) %></td></br>
+        <%= link_to 'Delete Plan', plan, method: :get, data: { confirm: 'Are you sure to delete this plan?' } %>
+        <%end%>
+  </div>
+</div>
+  <% end %>
+</div>
+<!-- <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fee</th>
+      <th>Details</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.name %></td>
+        <td><%= plan.fee %></td>
+        <td><%= link_to 'Show Details', plan %></td>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+        <td><%= link_to 'Destroy', plan, method: :get, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if current_user.admin? %>
+<%= link_to 'New Plan', new_plan_path %>
+<%end%>
+ -->
