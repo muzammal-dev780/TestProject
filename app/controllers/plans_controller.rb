@@ -2,7 +2,7 @@
 
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
-  before_action :require_login
+  before_action :authenticate_user!
 
   def index
     @plans = Plan.all
@@ -10,10 +10,12 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
+    authorize @plan
   end
 
   def create
     @plan = Plan.new(plan_params)
+    authorize @plan
     if @plan.save
       flash[:alert] = 'Plan is created'
       redirect_to @plan
@@ -22,7 +24,9 @@ class PlansController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @user = current_user
+   end
 
   def update
     if @plan.update(plan_params)
@@ -40,7 +44,6 @@ class PlansController < ApplicationController
   end
 
   private
-
   def set_plan
     @plan = Plan.find(params[:id])
   end

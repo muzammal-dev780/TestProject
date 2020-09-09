@@ -12,11 +12,11 @@
     <%else%>
         <br/><p>OOPS.. No features so far</p>
     <%end%>
-    <% if current_user.admin?%>
+    <% if policy(@user).admin? %>
     	<%= link_to 'Add features', new_plan_feature_path(plan) %></br>
         <%= link_to 'Change plan details', edit_plan_path(plan) %></br>
         <%= link_to 'Delete Plan', plan, method: :delete, data: { confirm: 'Are you sure to delete this plan?' } %>
-    <%elsif user_signed_in? %>
+    <%elsif policy(@user).buyer? %>
     <button type="button" class="btn btn-primary float-left mt-sm-5"><%= link_to 'Subscribe', new_plan_subscription_path(plan) , :class => 'text-white'%></br></button>
         
     <%end%>

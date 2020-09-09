@@ -1,7 +1,7 @@
 <center>
 	<h1>New Plan</h1>
 </center>
-<% if current_user.admin? %>
+<% if policy(@plan).create? %>
 	<%= render 'form', plan: @plan %>
 <%else%>
 	<h1>You should be an admin to add new plans</h1>

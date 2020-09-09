@@ -12,14 +12,14 @@
     <%= feature.unit_price %><br>
     <strong>Feature Max Unit Limit:</strong>
     <%= feature.max_unit_limit %><br>
-    <% if current_user.admin?%>
+    <%if policy(@user).admin? %>
     <%= link_to 'Change feature details', edit_feature_path(feature) %></br>
         <%= link_to 'Delete Feature', feature, method: :delete, data: { confirm: 'Are you sure to delete this feature?' } %>
     <%end%>
   </p>
  
 <% end %>
-<% if current_user.admin?%>
+<%if policy(@user).admin? %>
 <%= link_to 'Add New Feature', new_plan_feature_path(@plan.id)  %>
 <%end%>
 <%= link_to 'Back', user_session_path %>

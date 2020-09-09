@@ -1,11 +1,12 @@
-<center>
-	<h1>Edit Plan</h1>
-</center>
 
-
-<%= render 'form', plan: @plan %>
-<center>
-	<%= link_to 'Show', @plan %> |
-<%= link_to 'Back', plans_path %>
-</center>
+	<% if policy(@user).admin? %>
+		<center>
+			<h1>Edit Plan</h1>
+		</center>
+		<%= render 'form', plan: @plan %>
+		<center>
+			<%= link_to 'Show', @plan %> |
+		<%= link_to 'Back', plans_path %>
+		</center>
+	<%end%>
 

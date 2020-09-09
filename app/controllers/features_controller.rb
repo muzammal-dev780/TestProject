@@ -4,26 +4,31 @@ class FeaturesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user = current_user
     @plan = Plan.find(params[:plan_id])
     @features = @plan.features.all
   end
 
   def new
+    @user = current_user
     @plan = Plan.find(params[:plan_id])
     @feature = Feature.new
   end
 
   def create
+    @user = current_user
     @plan = Plan.find(params[:plan_id])
     @feature = @plan.features.create(feature_params)
     redirect_to plan_path(@plan)
   end
 
   def edit
+    @user = current_user
     @feature = Feature.find(params[:id])
   end
 
   def update
+    @user = current_user
     @feature = Feature.find(params[:id])
     if @feature.update(feature_params)
       redirect_to plans_path
@@ -33,11 +38,13 @@ class FeaturesController < ApplicationController
   end
 
   def show
+    @user = current_user
     @plan = Plan.find(params[:plan_id])
     @feature = Feature.find(params[:id])
   end
 
   def destroy
+    @user = current_user
     @feature = Feature.find(params[:id])
     @feature.destroy
     respond_to do |format|

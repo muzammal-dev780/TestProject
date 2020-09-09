@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @user = User.findparams[:user_id]
+    @user = User.find(params[:user_id])
     @subscriptions = @user.subscriptions.all
   end
 
