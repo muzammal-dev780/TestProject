@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class PlansController < ApplicationController
-  before_action  :set_plan,  only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
   before_action :require_login
 
   def index
-    
     @plans = Plan.all
   end
 
@@ -14,26 +15,24 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     if @plan.save
-      flash[:alert] ="Plan is created"
+      flash[:alert] = 'Plan is created'
       redirect_to @plan
     else
       render 'new'
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @plan.update(plan_params)
       redirect_to @plan
     else
-      render 'edit' 
+      render 'edit'
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @plan.destroy
@@ -41,16 +40,19 @@ class PlansController < ApplicationController
   end
 
   private
-    def set_plan
-      @plan = Plan.find(params[:id])
+
+  def set_plan
+    @plan = Plan.find(params[:id])
+  end
+
+  def require_login
+    unless current_user
+      flash[:error] = 'You have to login to access plans'
+      redirect_to new_user_session_path
     end
-    def require_login
-      if !current_user
-        flash[:error] ="You have to login to access plans"
-        redirect_to new_user_session_path
-      end
-    end
-    def plan_params
-      params.require(:plan).permit(:name, :fee)
-    end
+  end
+
+  def plan_params
+    params.require(:plan).permit(:name, :fee)
+  end
 end
