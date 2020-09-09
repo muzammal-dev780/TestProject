@@ -1,0 +1,55 @@
+<div class="container">
+  <center>
+  <h1>Listing All Subscriptions of <%= current_user.name %> </h1>
+<table class="table">
+  <tr>
+    <th>Plan ID</th>
+    <th>Plan Name</th>
+    <th>Plan Fee</th>
+    <th>Features</th>
+  </tr>
+ 
+  <% @subscriptions.each do |subscription| %>
+   
+      <tr>
+        <td><%= subscription.plan_id %></td>
+        <td><%= subscription.plan.name %></td>
+        <td><%= subscription.plan.fee %></td>
+        <td><%= subscription.plan.features %></td>
+      </tr>
+    
+  <% end %>
+</table>
+<br>
+<li><%= link_to 'Back', user_session_path %></li> 
+</center>
+
+</div>
+
+
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>Contacts</h1>
+      <div class="text-right">
+        <%= link_to "New subscription", new_user_subscription_path, remote: true, class: "btn btn-primary" %>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Last Name</th>
+            <th>Mobile Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscriptions.each do |subscription| %>
+            <%= render 'subscription_row', subscription: subscription %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<h2>Add a Feature:</h2>
+<%= form_with scope: :feature, url: plan_features_path(@plan.id), local: true do |form| %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :code %><br>
+    <%= form.text_field :code %>
+  </p>
+  <p>
+    <%= form.label :unit_price %><br>
+    <%= form.text_field :unit_price %>
+  </p>
+  <p>
+    <%= form.label :max_unit_limit %><br>
+    <%= form.text_field :max_unit_limit %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
+<%= link_to 'Back', user_session_path %>

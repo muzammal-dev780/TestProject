@@ -2,15 +2,24 @@
 <div class="row">
 <% @plans.each do |plan| %>
 
-<div class="card text-center col-sm-4" style="margin-right: 30px">
+<div class="card text-center col-sm-4" style="margin-right: 30px; margin-bottom: 30px">
 <div class="card-body">
     <h5 class="card-title">Plan Name: <%=plan.name%></h5>
     <p class="card-text">Plan Fee: <%=plan.fee%></p>
-    <td><%= link_to 'Show Details', plan %></td></br>
+    <%= link_to 'Show Details', plan %></br>
+    <%if plan.features.any?%>
+    	<%= link_to 'Show features', plan_features_path(plan) %></br>
+    <%else%>
+        <br/><p>OOPS.. No features so far</p>
+    <%end%>
     <% if current_user.admin?%>
-        <%= link_to 'Change plan details', edit_plan_path(plan) %></td></br>
-        <%= link_to 'Delete Plan', plan, method: :get, data: { confirm: 'Are you sure to delete this plan?' } %>
-        <%end%>
+    	<%= link_to 'Add features', new_plan_feature_path(plan) %></br>
+        <%= link_to 'Change plan details', edit_plan_path(plan) %></br>
+        <%= link_to 'Delete Plan', plan, method: :delete, data: { confirm: 'Are you sure to delete this plan?' } %>
+    <%elsif user_signed_in? %>
+    <button type="button" class="btn btn-primary float-left mt-sm-5"><%= link_to 'Subscribe', new_plan_subscription_path(plan) , :class => 'text-white'%></br></button>
+        
+    <%end%>
   </div>
 </div>
   <% end %>

@@ -2,7 +2,7 @@
 <center>
   <h1>Plans</h1>
   <% if current_user.admin? %>
-    <%= link_to 'Add New Plan', new_plan_path %>\
+    <%= link_to 'Add New Plan', new_plan_path %>
   <%end%>
 </center>
 <div class="row">
@@ -13,10 +13,16 @@
     <h5 class="card-title">Plan Name: <%=plan.name%></h5>
     <p class="card-text">Plan Fee: <%=plan.fee%></p>
     <td><%= link_to 'Show Details', plan %></td></br>
-    <% if current_user.admin? %>
+    <%if plan.features.any?%>
+        <%= link_to 'Show features', plan_features_path(plan) %></br>
+    <%else%>
+        <h1>OOPS.. No features so far</h1>>
+    <%end%>
+    <% if current_user.admin?%>
+        <%= link_to 'Add features', new_plan_feature_path(plan) %></br>
         <%= link_to 'Change plan details', edit_plan_path(plan) %></td></br>
         <%= link_to 'Delete Plan', plan, method: :get, data: { confirm: 'Are you sure to delete this plan?' } %>
-        <%end%>
+    <%end%>
   </div>
 </div>
   <% end %>

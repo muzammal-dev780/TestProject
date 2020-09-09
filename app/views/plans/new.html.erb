@@ -1,10 +1,9 @@
+<center>
+	<h1>New Plan</h1>
+</center>
 <% if current_user.admin? %>
-<h1>New Plan</h1>
-
-<%= render 'form', plan: @plan %>
-
-<%= link_to 'Back', plans_path %>
+	<%= render 'form', plan: @plan %>
 <%else%>
-<h1>You should be an admin to add new plans</h1>
-<h4>click <%= link_to 'here', plans_path %> to go back</h4>
+	<h1>You should be an admin to add new plans</h1>
+	<h4>click <%= link_to 'here', user_session_path %> to go back</h4>
 <%end%>

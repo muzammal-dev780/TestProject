@@ -1,15 +1,18 @@
 
+
+
+
 <h1 class="jumbotron text-center"> welcome to billing and recurring app in rails </h1>
 <% if user_signed_in? && current_user.admin? %>
 <center>
-	<h1>Welcome <%=current_user.name%></h1>
-	<%= link_to "Add plan", new_plan_path %><br />
-
+	<h1>Welcome <%=current_user.name%></h1><br /><br />
+	<%= link_to "Add New plan", new_plan_path %><br /><br /><br />
 	 <%=render 'plans/plans', plans: @plans%> 
 </center>
 <% elsif user_signed_in?%>
 <center>
 	<h1>Welcome <%=current_user.name%></h1>
+	<button type="button" class="btn btn-primary"><%= link_to "My subscriptions", user_subscriptions_path(current_user), :class => 'text-white' %></button>
 	<h1>Here are the plans for you </h1>
 	<%=render 'plans/plans', plans: @plans%>
 </center>
