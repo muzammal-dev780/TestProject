@@ -19,7 +19,7 @@ class FeaturesController < ApplicationController
     @user = current_user
     @plan = Plan.find(params[:plan_id])
     @feature = @plan.features.create(feature_params)
-    redirect_to plan_path(@plan)
+    redirect_to feature_path(@feature)
   end
 
   def edit

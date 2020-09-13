@@ -17,9 +17,4 @@
         <%= link_to 'Delete Feature', feature, method: :delete, data: { confirm: 'Are you sure to delete this feature?' } %>
     <%end%>
   </p>
- 
 <% end %>
-<%if policy(@user).admin? %>
-<%= link_to 'Add New Feature', new_plan_feature_path(@plan.id)  %>
-<%end%>
-<%= link_to 'Back', user_session_path %>

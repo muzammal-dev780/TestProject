@@ -1,19 +1,24 @@
-# frozen_string_literal: true
-
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
     @user = User.find(params[:user_id])
     @subscriptions = @user.subscriptions.all
+    @plan = @subscriptions.first.plan
   end
 
   def new
     @subscription = Subscription.new
   end
 
+  def home
+    @subscriptions = Subscription.all.to_a
+    @subscriptions.unshift(@subscriptions.detect{|s| s.bill_day == Date.today.strftime("%d").to_i}).uniq
+   
+  end
+
   def create
-    @plan = Plan.findparams[:plan_id]
+    @plan = Plan.find(params[:plan_id])
     @subscription = @plan.subscriptions.new(subscription_params)
     if @subscription.save
       redirect_to user_session_path
@@ -22,7 +27,12 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @user = User.find(params[:user_id])
+    @subscriptions = @user.subscriptions.all
+    @plan = @subscriptions.first.plan
+
+  end
 
   def edit; end
 

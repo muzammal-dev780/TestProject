@@ -7,4 +7,7 @@ class PlanPolicy < ApplicationPolicy
   def create?
   	user.role == "admin"
   end
+  def subscribed?
+  	plan.find(params[:user_id])
+  end
 end

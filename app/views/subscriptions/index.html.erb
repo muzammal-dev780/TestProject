@@ -6,19 +6,26 @@
     <th>Plan ID</th>
     <th>Plan Name</th>
     <th>Plan Fee</th>
-    <th>Features</th>
+    <th>Feature code</th>
+    <th>Feature unit</th>
+    <th>Feature max unit</th>
+    <th>Subscribed on</th>
   </tr>
  
-  <% @subscriptions.each do |subscription| %>
-   
+  <% @subscriptions.each do |subscription| %> 
       <tr>
         <td><%= subscription.plan_id %></td>
         <td><%= subscription.plan.name %></td>
         <td><%= subscription.plan.fee %></td>
-        <td><%= subscription.plan.features %></td>
-      </tr>
-    
-  <% end %>
+        <% @plan.features.each do |feature|%>
+          <td><%=feature.code%></td>
+          <td><%=feature.unit_price%></td>
+          <td><%=feature.max_unit_limit%></td>
+        <%end%>
+        <td><%=subscription.created_at.strftime("%d %B %Y")%></td>
+        <td style="color: lightgrey">(subscribed <%=Date.today.mjd - subscription.created_at.to_date.mjd%> days ago)</td>
+      </tr> 
+  <%end%>
 </table>
 <br>
 <li><%= link_to 'Back', user_session_path %></li> 

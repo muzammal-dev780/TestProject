@@ -1,0 +1,9 @@
+<center>
+	<h1>Add units</h1>
+</center>
+<% if policy(@usage).create? %>
+	<%= render 'form', usage: @usage %>
+<%else%>
+	<h1>You should be an admin to add units</h1>
+	<h4>click <%= link_to 'here', user_session_path %> to go back</h4>
+<%end%>

@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   resources :plans do
     resources :subscriptions, shallow: true
   end
-
+    resources :usage
+  
+  get 'all_subscriptions', to: "subscriptions#home"
   get 'about' => 'application#about', as: :about
   get 'contact' => 'application#contact', as: :contact
   root to: 'welcome#index'
