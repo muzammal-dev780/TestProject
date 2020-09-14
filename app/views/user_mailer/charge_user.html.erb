@@ -1,0 +1,30 @@
+<div class="container">
+	<body class="bg-light">
+		<h1 class="jumbotron text-center"> welcome to billing and recurring app in rails </h1>
+		<h1 class="jumbotron text-center">Charge Slip</h1>
+		<table class="table">
+		  <thead class="thead-light">
+		    <tr>
+		      <th>Plan Name</th>
+		      <th>Feature name</th>
+		      <th>Feature code</th>
+		      <th>Feature Max units</th>
+		      <th>Feature Unit price</th>
+		      <th>Total Bill</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th><%= @plan.name%></th>
+		      <td><%=@feature.name%><%=@feature.unit_price%></td>
+		      <td><%=@feature.code%></td>
+		      <td><%=@feature.max_unit_limit%></td>
+		      <td><%=@feature.unit_price%></td>
+		      <th><%= @transaction.total_charges%></th>
+		    </tr>
+		  </tbody>
+		</table>
+		<h1 class="jumbotron text-center">Thank You for subscribing our plan.</h1>
+	</body>
+</div>
+

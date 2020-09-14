@@ -23,7 +23,8 @@
 		      <td><%=subscription.bill_day%></td>
 		      <td><%=subscription.plan.fee%></td>
 		      <%if (subscription.bill_day) == (Date.today.strftime("%d").to_i)%>
-		      	<td><%=link_to 'Charge', all_subscriptions_path, :class=> "btn btn-primary d-flex justify-content-center", :role=> "button"%></td>
+		      	<td><%=link_to 'Charge User', subscription_charge_user_path(subscription), :class=> "btn btn-primary d-flex justify-content-center", :role=> "button"%></td>
+		      	
 	   		 <%else%>
 	   		 	<td>Today is not his day xD</td>
 	   		 <%end%>	

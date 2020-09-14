@@ -3,6 +3,7 @@
 class User < ApplicationRecord
 	mount_uploader :avatar, AvatarUploader
 	has_many :subscriptions
+	has_many :transactions
 	enum role: %i[user admin]
 	after_initialize :set_default_role, if: :new_record?
 	devise :database_authenticatable, :registerable,
