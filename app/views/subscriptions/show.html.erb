@@ -1,10 +1,10 @@
 <% @plan.subscriptions.each do |subscription| %>
   <p>
     <strong>User ID:</strong>
-    <%= @subscription.user_id %>
+    <%= subscription.user_id %>
   </p>
   <p>
     <strong>Plan ID:</strong>
-    <%= @subscription.plan_id %>
+    <%= subscription.plan_id %>
   </p>
 <% end %>

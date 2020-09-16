@@ -16,7 +16,7 @@
       </li>
        <% if user_signed_in? %>
        <li>
-         <div class="row float-right">
+         <div class="nav navbar-nav navbar-right">
            <div class="col-md-4">
              <li class="nav-item">
               <a class="nav-link" href="#">Welcome <%=current_user.name%></a>
@@ -25,8 +25,7 @@
                 <img src=<%= current_user.avatar.to_s%> width="40" height="40" class="rounded-circle"></img>
             </li>
             <li class="nav-item dropdown float-right">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href= <%= edit_user_registration_path%> >Edit profile</a>

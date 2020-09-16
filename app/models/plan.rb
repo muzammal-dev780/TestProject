@@ -2,7 +2,7 @@
 
 class Plan < ApplicationRecord
   has_many :features
-  has_many :subcriptions
+  has_many :subscriptions
 
   validates :name, presence: true
   validates :fee, presence: true

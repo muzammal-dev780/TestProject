@@ -6,20 +6,12 @@
 		  <thead class="thead-light">
 		    <tr>
 		      <th>Plan Name</th>
-		      <th>Feature name</th>
-		      <th>Feature code</th>
-		      <th>Feature Max units</th>
-		      <th>Feature Unit price</th>
 		      <th>Total Bill</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    <tr>
 		      <th><%= @plan.name%></th>
-		      <td><%=@feature.name%><%=@feature.unit_price%></td>
-		      <td><%=@feature.code%></td>
-		      <td><%=@feature.max_unit_limit%></td>
-		      <td><%=@feature.unit_price%></td>
 		      <th><%= @transaction.total_charges%></th>
 		    </tr>
 		  </tbody>

@@ -1,7 +1,0 @@
-<% if @contact.errors.blank? %>
-  $('#contact-modal').modal('hide');
-  $('table tbody').append('<%= j render "subscription_row", subscription: @subscription %>');
-<% else %>
-  // TODO: show the errors in the UI
-  alert('Algo falló');
-<% end %>

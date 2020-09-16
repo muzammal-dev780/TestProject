@@ -8,19 +8,23 @@
           <tr>
             <th>Subscription ID</th>
             <th>User ID</th>
-            <th>Plan ID</th>
-            <th>Billing date</th>
+            <th>Plan Name</th>
+            <th>Feature ID</th>
+            <th>Feature Max unit limit</th>
+            <th>Units used</th>
             <th>Usage</th>
           </tr>
         </thead>
      
-      <% @subscriptions.each do |s| %>
+      <% @usages.each do |s| %>
         <tr>
-              <td><%=s.id %></td>
+              <td><%=s.subscription_id %></td>
               <td><%=s.user_id %></td>
-              <td><%=s.plan_id %></td>
-              <td><%=s.bill_day %></td>
-              <td><%=link_to 'Add Units', add_usage_path(s), :class=> "btn btn-primary", :role=> "button"%></td>
+              <td><%=s.plan.name %></td>
+              <td><%=s.feature_id %></td>
+              <td><%=s.feature.max_unit_limit %></td>
+              <td><%=s.units_count %></td>
+              <td><%=link_to 'Edit Units', edit_usage_path(s), :class=> "btn btn-primary", :role=> "button"%></td>
         </tr>
       <% end %>
     </table>

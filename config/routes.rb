@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :plans do
-    resources :subscriptions, shallow: true
+    resources :subscriptions
   end
   resources :subscriptions do
     get :charge_user

@@ -16,14 +16,21 @@
         <%= link_to 'Change plan details', edit_plan_path(plan) %></br>
         <%= link_to 'Delete Plan', plan, method: :delete, data: { confirm: 'Are you sure to delete this plan?' } %>
     <%elsif policy(@user).buyer? %>
-       <% if @subscriptions.find_by(plan_id:plan.id) %>
-            <a href="#" class="btn btn-primary disabled" role="button" aria-pressed="true">Subscribed</a>
-        <%else%>
-            <%=link_to 'Subscribe', new_plan_subscription_path(plan), :class=> "btn btn-lg btn-primary btn-lg", :role=> "button"%>
-        <%end%>
+      <% if @subscriptions.find_by(plan_id:plan.id) %>
+        <a href="#" class="btn btn-primary disabled" role="button" aria-pressed="true">Subscribed</a>
+      <%elsif plan.features.any? %>
+          <%=link_to 'Subscribe',
+            new_plan_subscription_path(plan),
+            class: 'btn btn-primary btn-lg',
+            role: "button"
+          %> 
+      <%else%>
+        <a href="#" class="btn btn-primary disabled" role="button" aria-pressed="true">Wait for features to subscribe</a>         
+      <%end%>
     <%end%>
   </div>
 </div>
   <% end %>
 </div>
 </div>
+<div id="new-sub" style="display: none;"></div>
