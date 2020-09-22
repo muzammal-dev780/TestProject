@@ -3,7 +3,7 @@
 	<%if policy(@user).admin? %>
 	<center>
 		<%=link_to 'View subscriptions', all_subscriptions_path, :class=> "btn btn-primary btn-lg", :role=> "button"%>
-		<%=link_to 'View usages', usage_index_path, :class=> "btn btn-primary btn-lg", :role=> "button"%>
+		<%=link_to 'View usages', all_subs_path, :class=> "btn btn-primary btn-lg", :role=> "button"%>
 		<%=link_to 'Add New plan', new_plan_path, :class=> "btn btn-primary btn-lg", :role=> "button"%><br /><br /><br />
 		    <%=render 'plans/plans', plans: @plans%> 
 		<%end%>
@@ -11,14 +11,15 @@
 	
 	<% if policy(@user).buyer? %>
 		<center>
-			<button type="button" class="btn btn-primary"><%= link_to "My subscriptions", user_subscriptions_path(current_user), :class => 'text-white' %></button>
+			<% if @subscriptions.any? %>
+			<%=link_to 'My subscriptions', user_subscriptions_path(current_user), :class=> "btn btn-primary btn-lg", :role=> "button"%>
+			<%end%>
 			<h1>Here are the plans for you </h1>
 			<%=render 'plans/plans', plans: @plans%>
 		</center>
 	<%end%>
 <%else%>
 	<div class="col-md-12 text-center" style="margin-top: 250px">
-		<button type="button" class="btn btn-primary btn-lg"><%= link_to "Login", new_user_session_path, :class => 'text-white' %></button>
-		<button type="button" class="btn btn-primary btn-lg"><%= link_to "Sign up", new_user_registration_path, :class => 'text-white' %></button>
-	</div>
+		<%=link_to 'Login', new_user_session_path, :class=> "btn btn-primary btn-lg", :role=> "button"%>
+		<%=link_to 'Sign up', new_user_registration_path, :class=> "btn btn-primary btn-lg", :role=> "button"%>
 <%end%>

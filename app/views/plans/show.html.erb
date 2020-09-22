@@ -1,7 +1,3 @@
-<!-- <p id="notice"><%= notice %></p>
-<% if flash[:alert] %>
-    <div class="notice"><%= flash[:alert] %></div>
-  <% end %> -->
 <p>
   <strong>Name:</strong>
   <%= @plan.name %>
@@ -13,5 +9,4 @@
 </p>
 
 
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', user_session_path %>
+<%= link_to 'Edit', edit_plan_path(@plan) %>

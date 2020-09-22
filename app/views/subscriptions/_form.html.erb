@@ -1,17 +1,15 @@
-<div class="container text-center">
-  <div class="col-md-4"></div>
+<div class="container">
   <div class="col-md-4 col-md-offset-4">
     <%= form_with(model: @subscription, local: true) do |form| %>
   <% if @subscription.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
-
-      <ul>
-      <% subscription.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+      <div id="error_explanation">
+          <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+          <ul>
+          <% subscription.errors.full_messages.each do |message| %>
+            <li>billday can't be empty, greater than 28 and less than 1</li>
+          <% end %>
+          </ul>
+      </div>
   <% end %>
   <div class="form-group">
     <div class="field">
@@ -19,7 +17,7 @@
     </div>
     <div class="field">
       <%= form.label :bill_day %>
-      <%= form.text_field :bill_day, class: "form-control" %>
+      <%= form.text_field :bill_day, autofocus: true,class: "form-control" %>
     </div>
   </div>
   <%= form.submit class: 'btn btn-primary' %>

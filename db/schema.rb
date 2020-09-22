@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_14_072608) do
+ActiveRecord::Schema.define(version: 2020_09_21_152248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_09_14_072608) do
     t.integer "unit_price"
     t.integer "max_unit_limit"
     t.bigint "plan_id"
+    t.datetime "created_at", default: "2020-09-22 15:04:54"
+    t.datetime "updated_at", default: "2020-09-22 15:04:54"
     t.index ["plan_id"], name: "index_features_on_plan_id"
   end
 
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_072608) do
     t.datetime "updated_at", null: false
     t.integer "feature_id"
     t.index ["plan_id"], name: "index_usages_on_plan_id"
+    t.index ["subscription_id", "feature_id"], name: "index_usages_on_subscription_id_and_feature_id", unique: true
     t.index ["subscription_id"], name: "index_usages_on_subscription_id"
     t.index ["user_id"], name: "index_usages_on_user_id"
   end

@@ -1,10 +1,10 @@
-<%= form_with(model: plan, local: true) do |form| %>
-  <% if plan.errors.any? %>
+<div class="container text-center">
+  <div class="form" style="margin-left:100px;width: 70%;text-align: center;">
+    <%= form_with(model: @plan, local: true) do |form| %>
+  <% if @plan.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
-
       <ul>
-      <% plan.errors.full_messages.each do |message| %>
+      <% @plan.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -24,6 +24,8 @@
   </div>
 
   <div class="actions new_user">
-    <%= form.submit "Add plan", class:"btn btn-primary"%>
+    <%= form.submit textt, class:"btn btn-primary"%>
   </div>
 <% end %>
+  </div>
+</div>

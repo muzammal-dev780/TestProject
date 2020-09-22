@@ -1,8 +1,2 @@
-
-	<% if policy(@user).admin? %>
-		<center>
-			<h1>Edit Plan</h1>
-		</center>
-		<%= render 'form', plan: @plan %>
-	<%end%>
+<%= render partial:'form', plan: @plan, locals: {textt: "Update Plan"}%>
 

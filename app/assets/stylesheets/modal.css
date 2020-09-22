@@ -1,3 +1,6 @@
 .modal .hide{
 	display: block;
 }
+.field-with-errors input {
+  border: 1px solid red;
+}

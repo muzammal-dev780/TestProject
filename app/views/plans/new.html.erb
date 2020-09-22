@@ -1,9 +1,2 @@
-<center>
-	<h1>New Plan</h1>
-</center>
-<% if policy(@plan).create? %>
-	<%= render 'form', plan: @plan %>
-<%else%>
-	<h1>You should be an admin to add new plans</h1>
-	<h4>click <%= link_to 'here', user_session_path %> to go back</h4>
-<%end%>
+<h1 class="text-center">Add Plan</h1>
+<%= render partial:'form', plan: @Plan, locals: {textt: "New Plan"}%>

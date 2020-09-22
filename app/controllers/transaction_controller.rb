@@ -1,11 +1,10 @@
-class TransactionController < ApplicationController
-	def index
-	end
+# frozen_string_literal: true
 
-	def new
-	end
-	def create
-		
-	end
-	
+# Transaction controller
+class TransactionController < ApplicationController
+  def index; end
+
+  def new; end
+
+  def create; end
 end

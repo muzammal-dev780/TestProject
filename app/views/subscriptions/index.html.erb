@@ -1,62 +1,34 @@
 <div class="container">
   <center>
-  <h1>Listing All Subscriptions of <%= current_user.name %> </h1>
-<table class="table">
-  <tr>
-    <th>Plan ID</th>
-    <th>Plan Name</th>
-    <th>Plan Fee</th>
-    <th>Feature code</th>
-    <th>Feature unit</th>
-    <th>Feature max unit</th>
-    <th>Subscribed on</th>
-  </tr>
- 
-  <% @subscriptions.each do |subscription| %> 
+    <%if @subscriptions.any? %>
+    <h1>Listing All Subscriptions of <%= current_user.name %> </h1>
+    <table class="table">
       <tr>
-        <td><%= subscription.plan_id %></td>
-        <td><%= subscription.plan.name %></td>
-        <td><%= subscription.plan.fee %></td>
-        <% @plan.features.each do |feature|%>
-          <td><%=feature.code%></td>
-          <td><%=feature.unit_price%></td>
-          <td><%=feature.max_unit_limit%></td>
-        <%end%>
-        <td><%=subscription.created_at.strftime("%d %B %Y")%></td>
-        <td style="color: lightgrey">(subscribed <%=Date.today.mjd - subscription.created_at.to_date.mjd%> days ago)</td>
+        <th>Plan ID</th>
+        <th>Plan Name</th>
+        <th>Plan Fee</th>
+        <th>User Name </th>
+        <th>Features</th>
+        <th>Subscribed on</th>
+
       </tr> 
-  <%end%>
-</table>
-<br>
-<li><%= link_to 'Back', user_session_path %></li> 
-</center>
-
-</div>
-
-
-
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Contacts</h1>
-      <div class="text-right">
-        <%= link_to "New subscription", new_user_subscription_path, remote: true, class: "btn btn-primary" %>
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Last Name</th>
-            <th>Mobile Number</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @subscriptions.each do |subscription| %>
-            <%= render 'subscription_row', subscription: subscription %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+        <% @subscriptions.each do |subscription| %> 
+              <tr>
+              <td><%= subscription.plan_id %></td>
+              <td><%= subscription.plan.name %></td>
+              <td><%= subscription.plan.fee %></td>
+              <td><%= subscription.user.name %></td>
+              <td><%=link_to 'Click here', plan_features_path(subscription.plan)%></td>
+              <td><%=subscription.created_at.strftime("%d %B %Y")%></td>
+              <td style="color: lightgrey">(subscribed <%=Date.today.mjd - subscription.created_at.to_date.mjd%> days ago)</td>
+            </tr>
+        <%end%>
+    </table>
+    <%else%>
+        <h1 style="margin-top: 200px">You have no subscriptions</h1>
+        
+        <h5>Click <%=link_to 'here', user_session_path%> to go back</h5>
+      <%end%>
+    <br>
+  </center>
 </div>

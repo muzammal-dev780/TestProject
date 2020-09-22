@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# app policy
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -33,7 +36,7 @@ class ApplicationPolicy
   def destroy?
     false
   end
-
+  # scope
   class Scope
     attr_reader :user, :scope
 
@@ -45,5 +48,17 @@ class ApplicationPolicy
     def resolve
       scope.all
     end
+  end
+
+  def self.permit_admin_to(*actions)
+    actions.each do |action|
+      define_method("#{action}?") do
+        admin?
+      end
+    end
+  end
+
+  def admin?
+    @user.admin?
   end
 end

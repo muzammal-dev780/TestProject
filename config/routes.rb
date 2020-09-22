@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'user/registrations' }
 
   resources :plans do
-    resources :features, shallow: true
+    resources :features
   end
 
   resources :users do
@@ -12,20 +12,26 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :subscriptions, shallow: true
+    resources :subscriptions, shallow: true do
+      member do
+        get :charge_user
+      end
+    end
   end
 
   resources :plans do
     resources :subscriptions
   end
   resources :subscriptions do
-    get :charge_user
     resources :transactions, shallow: true
   end
-    resources :usage
-  
-  get 'all_subscriptions', to: "subscriptions#home"
-  get 'about' => 'application#about', as: :about
-  get 'contact' => 'application#contact', as: :contact
+  resources :subscriptions do
+    resources :usages, shallow: true
+  end
+
+  get 'all_subscriptions', to: 'subscriptions#home'
+  get 'all_subs', to: 'usages#all_subs'
+  get 'all_usages', to: 'usages#home'
   root to: 'welcome#index'
+  get '*path' => redirect('/')
 end

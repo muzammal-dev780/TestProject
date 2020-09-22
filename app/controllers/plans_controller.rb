@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+# Plans controller
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[show edit update destroy]
+  before_action :set_plan, only: %i[edit update destroy]
   before_action :authenticate_user!
 
   def index
     @plans = Plan.all
+    flash.now[:notice] = "We have exactly #{@plans.size} plans available."
   end
 
   def new
@@ -17,42 +19,39 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     authorize @plan
     if @plan.save
-      flash[:alert] = 'Plan is created'
-      redirect_to @plan
+      flash[:alert] = 'Plan is created successfully'
+      redirect_to root_url
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
     @user = current_user
-   end
+    authorize @plan
+  end
 
   def update
+    authorize @plan
     if @plan.update(plan_params)
-      redirect_to @plan
+      flash[:alert] = 'Plan is updated successfully'
+      redirect_to root_url
     else
-      render 'edit'
+      render :edit
     end
   end
 
-  def show; end
-
   def destroy
+    authorize @plan
     @plan.destroy
-    redirect_to user_session_path
+    flash[:destroy] = 'Plan is destroyed successfully'
+    redirect_to root_url
   end
 
   private
+
   def set_plan
     @plan = Plan.find(params[:id])
-  end
-
-  def require_login
-    unless current_user
-      flash[:error] = 'You have to login to access plans'
-      redirect_to new_user_session_path
-    end
   end
 
   def plan_params

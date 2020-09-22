@@ -1,20 +1,34 @@
 <center>
    <h1>Listing All Features of <%=@plan.name%> plan</h1> 
 </center>
-
-<% @plan.features.each do |feature| %>
-  <p>
-    <strong>Feature Name:</strong>
-    <%= feature.name %><br>
-    <strong>Feature Code:</strong>
-    <%= feature.code %><br>
-    <strong>Feature Unit Price:</strong>
-    <%= feature.unit_price %><br>
-    <strong>Feature Max Unit Limit:</strong>
-    <%= feature.max_unit_limit %><br>
-    <%if policy(@user).admin? %>
-    <%= link_to 'Change feature details', edit_feature_path(feature) %></br>
-        <%= link_to 'Delete Feature', feature, method: :delete, data: { confirm: 'Are you sure to delete this feature?' } %>
-    <%end%>
-  </p>
-<% end %>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+        <% @plan.features.each do |feature| %>
+            <div class='card text-center'>
+              <div class='card-header'>
+                Feature
+                <div class="float-right">
+                  <% if policy(@user).admin? %>
+                    <%= link_to fa_icon('edit'), edit_plan_feature_path(@plan,feature), class: 'text-dark', title: 'Edit Feature' %>
+                  <% end %>
+                  <% if policy(@user).admin? %>
+                    <%= link_to fa_icon('trash'), plan_feature_path(@plan,feature), method: :delete, data: { confirm: 'Are you sure you want to delete?' }, class: 'text-danger ml-3', title: 'Delete Feature' %>
+                  <% end %>
+                </div>
+              </div>
+              <div class='card-body'>
+                <h5 class='card-title'><%= feature.name %></h5>
+                <p class='card-text'>
+                  Feature Code: <b><%= feature.code %></b>
+                </p>
+                <p class='card-text'>Feature Unit Price: <b><%= feature.unit_price %></b></p>
+                <p class='card-text'>Feature Max Unit Limit: <b><%= feature.max_unit_limit %></b></p>
+              </div>
+              <div class='card-footer text-muted d-block text-center'>
+                <%= feature.created_at.strftime('%d-%m-%Y %I:%M %p') %>
+              </div>
+            </div>
+        <% end %>
+    </div>
+</div>

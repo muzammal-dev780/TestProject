@@ -1,5 +1,7 @@
-<h1>User#signup_confirmation</h1>
-
-<p>
-  <%= @greeting %>, find me in app/views/user_mailer/signup_confirmation.html.erb
-</p>
+<div class="container">
+	<body class="bg-light">
+		<h1 class="jumbotron text-center"> welcome <%=@user.name%> to our billing and recurring app</h1>
+		<p>Click on <%=link_to 'this', @url%> link to login.</p>
+		<h1 class="jumbotron text-center">Thank You for subscribing our plan.</h1>
+	</body>
+</div>

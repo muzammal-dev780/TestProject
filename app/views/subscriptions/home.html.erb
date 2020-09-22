@@ -3,48 +3,35 @@
 </center>
 <div class="container" style="margin-top: 110px">
 	<div class="row">
-	<table class="table table-striped table-bordered table-responsive-md">
-	  <thead class="thead-dark">
-	    <tr>
-	      <th scope="col">Plan ID</th>
-	      <th scope="col">User ID</th>
-	      <th scope="col">Billing day</th>
-	      <th scope="col">Plan Fees</th>
-	      <th scope="col">Charge users</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  	<% @subscriptions.each do |subscription| %>
+		<table class="table table-striped table-bordered table-responsive-md">
+		  <thead class="thead-dark">
 		    <tr>
-		      <td><%=subscription.plan_id%></td>
-		      <td><%=subscription.user_id%></td>
-		      <td><%=subscription.bill_day%></td>
-		      <td><%=subscription.plan.fee%></td>
-		      <%if (subscription.bill_day) == (Date.today.strftime("%d").to_i)%>
-		      	<td><%=link_to 'Charge User', subscription_charge_user_path(subscription), :class=> "btn btn-primary d-flex justify-content-center", :role=> "button"%></td>
-		      	
-	   		 <%else%>
-	   		 	<td>Today is not his day xD</td>
-	   		 <%end%>	
-	   		</tr>
-	   		<%end%>
-		</tbody>
-	</table>
-</div>
-</div>
-
-
-
-
-
-<!-- <div class="row">
-	<% @subscriptions.each do |subscription| %>
-	<div class="card text-center col-sm-4">
-		<div class="card-body">
-		    <h5 class="card-title">Plan Name: <%=subscription.plan_id%></h5>
-		    <p class="card-text">Plan Fee: <%=subscription.user_id%></p>
-		</div>
+		      <th scope="col">Plan ID</th>
+		      <th scope="col">User ID</th>
+		      <th scope="col">Billing day</th>
+		      <th scope="col">Plan Fees</th>
+		      <th scope="col">Charge users</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @subscriptions.each do |subscription| %>
+			    <tr>
+			      <td><%=subscription.plan_id%></td>
+			      <td><%=subscription.user_id%></td>
+			      <td><%=subscription.bill_day%></td>
+			      <td><%=subscription.plan.fee%></td>
+			      <%if subscription.transactions.any? %>
+		      	   <td><a href="#" class="btn btn-primary d-flex justify-content-center disabled" role="button" aria-pressed="true">Already Charged</a></td>
+			      <%elsif (subscription.bill_day) == (Date.today.strftime("%d").to_i)%>
+			      	<td><%=link_to 'Charge User', charge_user_subscription_path(subscription), :class=> "btn btn-primary d-flex justify-content-center", :role=> "button"%></td>
+			      	
+		   		 <%else%>
+		   		 	<td>Wait to charge</td>
+		   		 <%end%>	
+		   		</tr>
+		   		<%end%>
+			</tbody>
+		</table>
 	</div>
-	<%end%>
-</div> -->
+</div>
 

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# usage model
 class Usage < ApplicationRecord
   belongs_to :user
   belongs_to :plan

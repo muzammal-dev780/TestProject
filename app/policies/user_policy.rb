@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
+# UserPolicy
 class UserPolicy < ApplicationPolicy
-  def admin?
-  	user.role == "admin"
-  end
+  delegate :admin?, to: :user
+
   def buyer?
-  	user.role == "user"
+    user.role == 'user'
   end
+
   def user?
-  	user.role == "admin" || user.role == "user"
+    user.role == 'admin' || user.role == 'user'
   end
 end
