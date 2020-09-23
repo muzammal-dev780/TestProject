@@ -4,6 +4,11 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+  </br>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -20,18 +25,16 @@
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
-
+  </br>
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-  
+  </br></br>
   <% if current_user.avatar.url.present? %>
-    <%= image_tag(current_user.avatar.url) %>
-    <%= f.label :remove_avatar do %>
-      <%= f.check_box :remove_avatar %>
-    <% end %>
+    <%= image_tag(current_user.avatar.url, size: "200x200") %>
   <% end %>
+  </br></br>
   <%= f.file_field :avatar %>
   <%= f.hidden_field :avatar_cache %>
 
@@ -39,7 +42,7 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
-
+  </br>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
