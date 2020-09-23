@@ -40,7 +40,7 @@ class SubscriptionsController < ApplicationController
 
   def charge_user
     if @transaction.save
-      send_charge_mail(@user,@transaction,@plan,@feature)
+      send_charge_mail(@user, @transaction, @plan, @feature)
       flash[:notice] = 'User is charged successfully'
       redirect_to all_subscriptions_path
     else
@@ -76,9 +76,9 @@ class SubscriptionsController < ApplicationController
     @user = current_user
   end
 
-  def send_charge_mail(user,transaction,plan,feature)
+  def send_charge_mail(user, transaction, plan, feature)
     UserMailer.charge_user(user: user, transaction: transaction, plan: plan,
-                      feature: feature).deliver_later
+                           feature: feature).deliver_later
   end
 
   def usage_params

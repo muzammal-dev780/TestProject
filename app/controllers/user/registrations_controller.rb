@@ -18,7 +18,6 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   private
 
-
   def send_welcome_mail(user)
     UserMailer.welcome_email(user).deliver_now
   end
