@@ -4,8 +4,8 @@
 class UserMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
-  def welcome_email
-    @user = params[:user]
+  def welcome_email(user)
+    @user = user
     email_with_name = %("#{@user.name}" <#{@user.email}>)
     @url = 'http://localhost:3000/users/sign_in'
     make_bootstrap_mail(

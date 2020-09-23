@@ -2,7 +2,6 @@
 
 # Subscription controller
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user, only: %i[create]
   before_action :set_charge_user, only: %i[charge_user]
   before_action :set_create, only: %i[create]
@@ -41,8 +40,7 @@ class SubscriptionsController < ApplicationController
 
   def charge_user
     if @transaction.save
-      UserMailer.with(user: @user, transaction: @transaction, plan: @plan,
-                      feature: @feature).charge_user.deliver_later
+      send_charge_mail(@user,@transaction,@plan,@feature)
       flash[:notice] = 'User is charged successfully'
       redirect_to all_subscriptions_path
     else
@@ -76,6 +74,11 @@ class SubscriptionsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def send_charge_mail(user,transaction,plan,feature)
+    UserMailer.charge_user(user: user, transaction: transaction, plan: plan,
+                      feature: feature).deliver_later
   end
 
   def usage_params

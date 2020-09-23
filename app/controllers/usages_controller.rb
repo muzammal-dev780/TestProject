@@ -2,7 +2,6 @@
 
 # Usage controller
 class UsagesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_usage, only: %i[edit update]
   before_action :set_subscription, only: %i[index new create]
   before_action :set_usage_to_create, only: %i[create]

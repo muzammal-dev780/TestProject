@@ -2,7 +2,6 @@
 
 # Feature controller
 class FeaturesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user
   before_action :set_plan
   before_action :set_feature, except: %i[index new create]
