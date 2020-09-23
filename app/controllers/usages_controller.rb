@@ -65,6 +65,7 @@ class UsagesController < ApplicationController
     @usage.user = @subscription.user
     @usage.subscription = @subscription
   end
+
   def set_subscription
     @subscription = Subscription.find(params[:subscription_id])
   end

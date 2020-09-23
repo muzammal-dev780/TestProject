@@ -73,6 +73,7 @@ class SubscriptionsController < ApplicationController
     @transaction = Transaction.new(user_id: @user.id, subscription_id: @subscription.id,
                                    total_charges: @subscription.calculate_payment(@subscription, @features, @plan))
   end
+
   def set_user
     @user = current_user
   end
